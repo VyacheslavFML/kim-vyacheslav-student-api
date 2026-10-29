@@ -2,7 +2,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 mkdir -p evidence
-exec > >(tee evidence/containers.txt) 2>&1
+exec > evidence/containers.txt 2>&1
 docker compose up -d --build
 ./scripts/api_smoke.sh
 # Save only non-secret inspect fields, never the environment containing DB_PASSWORD.
