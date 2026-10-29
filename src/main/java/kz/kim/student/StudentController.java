@@ -17,6 +17,9 @@ public class StudentController {
   Student s=repository.saveAndFlush(new Student(r.name(),r.email(),r.age()));
   return ResponseEntity.created(URI.create("/api/students/"+s.getId())).body(s);
  }
+ @PutMapping("/api/students/{id}") public Student update(@PathVariable Long id,@Valid @RequestBody StudentRequest r){
+  Student s=find(id); s.set(r.name(),r.email(),r.age()); return repository.saveAndFlush(s);
+ }
  @DeleteMapping("/api/students/{id}") public ResponseEntity<Void> delete(@PathVariable Long id){repository.delete(find(id));return ResponseEntity.noContent().build();}
  private Student find(Long id){return repository.findById(id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Student not found"));}
 }
