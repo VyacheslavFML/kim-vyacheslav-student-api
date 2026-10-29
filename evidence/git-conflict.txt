@@ -1,0 +1,17 @@
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+Automatic merge failed; fix conflicts and then commit the result.
+diff --cc README.md
+index d1855bf,3c99943..0000000
+--- a/README.md
++++ b/README.md
+@@@ -1,5 -1,5 +1,9 @@@
+  # Kim Vyacheslav Student API
+++<<<<<<< HEAD
+ +Documentation status: Kim Vyacheslav main instructions
+++=======
++ Documentation status: Kim Vyacheslav feature documentation
+++>>>>>>> feature/kim-vyacheslav-documentation
+  
+  Автор: Ким Вячеслав Александрович (Kim_Vyacheslav).
+  Gradle, Java 21, Spring Boot 3.5.7, PostgreSQL 16. API: `/api/students`.
