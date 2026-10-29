@@ -1,5 +1,5 @@
 # Kim Vyacheslav Student API
-Documentation status: initial version
+Documentation status: Kim Vyacheslav feature documentation
 
 Автор: Ким Вячеслав Александрович (Kim_Vyacheslav).
 Gradle, Java 21, Spring Boot 3.5.7, PostgreSQL 16. API: `/api/students`.
