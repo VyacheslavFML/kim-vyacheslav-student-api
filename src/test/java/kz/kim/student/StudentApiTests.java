@@ -24,6 +24,17 @@ class StudentApiTests {
   assertThat(http.exchange(url,HttpMethod.DELETE,HttpEntity.EMPTY,Void.class).getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
   assertThat(http.getForEntity(url,String.class).getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
  }
+ @Test void updatePersistsAndValidates(){
+  var created=http.postForEntity("/api/students",valid(),Student.class).getBody();
+  var url="/api/students/"+created.getId();
+  var updated=new StudentRequest("Kim Vyacheslav Updated","kim.updated@example.com",22);
+  assertThat(http.exchange(url,HttpMethod.PUT,new HttpEntity<>(updated),String.class).getStatusCode()).isEqualTo(HttpStatus.OK);
+  assertThat(repository.findById(created.getId()).orElseThrow().getAge()).isEqualTo(22);
+  assertThat(http.getForObject(url,String.class)).contains("kim.updated@example.com");
+  assertThat(http.exchange(url,HttpMethod.PUT,new HttpEntity<>(new StudentRequest("","bad",0)),String.class).getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+ }
+ @Test void updateMissingIs404(){assertThat(http.exchange("/api/students/999999",HttpMethod.PUT,new HttpEntity<>(valid()),String.class).getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);}
+ @Test void deleteMissingIs404(){assertThat(http.exchange("/api/students/999999",HttpMethod.DELETE,HttpEntity.EMPTY,String.class).getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);}
  @Test void missingIs404(){assertThat(http.getForEntity("/api/students/999999",String.class).getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);}
  @Test void invalidIs400(){assertThat(http.postForEntity("/api/students",new StudentRequest("","bad",0),String.class).getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);}
  @Test void duplicateIs409(){http.postForEntity("/api/students",valid(),String.class);assertThat(http.postForEntity("/api/students",valid(),String.class).getStatusCode()).isEqualTo(HttpStatus.CONFLICT);}
