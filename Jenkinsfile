@@ -21,7 +21,7 @@ pipeline {
         stage('Test') {
             steps { sh './gradlew --no-daemon test' }
             post {
-                always { junit 'build/test-results/test/*.xml' }
+                always { archiveArtifacts artifacts: 'build/test-results/test/*.xml', allowEmptyArchive: true }
             }
         }
         stage('Docker Build') {
