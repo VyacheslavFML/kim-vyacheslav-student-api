@@ -19,7 +19,7 @@ pipeline {
             steps { sh './gradlew --no-daemon clean bootJar' }
         }
         stage('Test') {
-            steps { sh './gradlew --no-daemon test' }
+            steps { sh './gradlew --no-daemon test -PcontrolledFailure=true' }
             post {
                 always { archiveArtifacts artifacts: 'build/test-results/test/*.xml', allowEmptyArchive: true }
             }
