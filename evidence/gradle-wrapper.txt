@@ -1,0 +1,18 @@
+
+Welcome to Gradle 8.14.3!
+
+Here are the highlights of this release:
+ - Java 24 support
+ - GraalVM Native Image toolchain selection
+ - Enhancements to test reporting
+ - Build Authoring improvements
+
+For more details see https://docs.gradle.org/8.14.3/release-notes.html
+
+Starting a Gradle Daemon (subsequent builds will be faster)
+
+> Task :wrapper
+Caught exception: Could not start the FSEvents stream: /Users/papkimka/.codex/.chatgpt-projects/g-p-6ab19f9ac76081918375ee95ecf3392a/output/devops-midterm/kim-vyacheslav-student-api
+
+BUILD SUCCESSFUL in 13s
+1 actionable task: 1 executed

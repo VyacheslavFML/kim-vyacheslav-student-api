@@ -1,0 +1,35 @@
+name: kim-vyacheslav-student-api
+services:
+  app:
+    image: kim-vyacheslav-student-api:${IMAGE_TAG:-v1.0-kim-vyacheslav}
+    build:
+      context: .
+      args:
+        APP_VERSION: ${APP_VERSION:-1.0.0}
+    ports:
+      - "127.0.0.1:${APP_PORT:-8082}:8080"
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/${POSTGRES_DB:-students}
+      DB_USERNAME: ${POSTGRES_USER:-student}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks: [student-network]
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-students}
+      POSTGRES_USER: ${POSTGRES_USER:-student}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    volumes: [student-data:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks: [student-network]
+volumes:
+  student-data:
+networks:
+  student-network:

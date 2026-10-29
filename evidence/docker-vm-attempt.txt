@@ -1,0 +1,9 @@
+time="2026-10-30T01:26:00+05:00" level=warning msg="failed to detect whether running under rosetta, assuming false" error="failed to read sysctl \"sysctl.proc_translated\": operation not permitted"
+time="2026-10-30T01:26:00+05:00" level=info msg="starting colima"
+time="2026-10-30T01:26:00+05:00" level=info msg="runtime: docker"
+time="2026-10-30T01:26:01+05:00" level=info msg="starting ..." context=vm
+time="2026-10-30T01:26:01+05:00" level=warning msg="failed to detect whether running under rosetta, assuming false" error="failed to read sysctl \"sysctl.proc_translated\": operation not permitted"
+time="2026-10-30T01:26:01+05:00" level=error msg="Instance \"colima\" has configuration errors" error="failed to determine the boot session ID: operation not permitted\nfailed to determine the boot session ID: operation not permitted"
+time="2026-10-30T01:26:01+05:00" level=info msg="Using the existing instance `colima`"
+time="2026-10-30T01:26:01+05:00" level=fatal msg="errors inspecting instance: [failed to determine the boot session ID: operation not permitted failed to determine the boot session ID: operation not permitted]"
+time="2026-10-30T01:26:01+05:00" level=fatal msg="error starting vm: error at 'starting': exit status 1"
