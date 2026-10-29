@@ -7,10 +7,11 @@ POSIX shell, доступ к Docker daemon и интернет для Gradle. Wr
 Доступ к Docker socket дает высокие привилегии — используйте собственный выделенный учебный агент.
 
 1. Запустите Build Now, сохраните номер, consoleText и stage view. Ожидаются Checkout, Build, Test, Docker Build, Verify.
-2. Для контролируемой ошибки переключите отдельную job на `feature/kim-vyacheslav-ci-failure`.
-   В ней Test запускается с `-PcontrolledFailure=true`, поэтому JUnit assertion падает.
+2. Контролируемая ошибка сохранена в commit `6a64fa3` ветки `feature/kim-vyacheslav-ci-failure`.
+   Для повторения используйте этот commit в отдельной job. Test запускается с `-PcontrolledFailure=true`, поэтому assertion падает.
    Docker Build и Verify должны быть пропущены. Сохраните реальный FAILED consoleText.
-3. В этой ветке исправьте команду на `./gradlew --no-daemon test`, сделайте commit и push.
+3. Исправление уже сохранено commit `2048dd4`; финальная версия ветки проходит.
+   Для собственной повторной демонстрации исправьте команду на `./gradlew --no-daemon test`, сделайте commit и push.
    Сохраните следующий SUCCESS consoleText. В main намеренную ошибку не переносите.
 4. Основная pipeline содержит pollSCM раз в 2 минуты с распределением H. После первого ручного запуска
    создайте и отправьте осмысленный commit. Дождитесь запуска от SCM polling, сохраните build cause,

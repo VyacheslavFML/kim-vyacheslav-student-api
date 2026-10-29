@@ -9,3 +9,6 @@ backups/*
 !backups/.gitkeep
 *.log
 .DS_Store
+
+# Generated runtime evidence is shipped in the submission archive.
+evidence/
